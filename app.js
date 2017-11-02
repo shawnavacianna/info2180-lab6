@@ -1,27 +1,10 @@
-<<<<<<< HEAD
-/*window.onload = function (){
-var button = document.getElementById("search");
-
-var key = document.getElementById("searchbar").value;
-
-button.addEventListener("click", def(key));
-}; */
-
 window.onload = function() {
 var mybutton = document.getElementById("search");
 mybutton.addEventListener("click", display);
-}
-//function sends an alert to user that tells the definition of the word definition
-function firstalert(){
-var url="request.php?q=definition";
-var response = new XMLHttpRequest();
-    response.onreadystatechange = function (){
-       if (this.readyState === 4 && this.status == 200){
-    alert(this.responseText);
-        };
-    };
-response.open("GET",url, true);
-response.send();
+
+var allbutton = document.getElementById("searchall");
+allbutton.addEventListener("click", alldisplay);
+
 }
 
 //function below allows searching for a word and the definition of the word is printed rather than an alert       
@@ -35,24 +18,37 @@ document.getElementById("result").innerHTML = response.responseText;
 response.open("GET", "request.php?q=" + key, true);
 response.send();
 }
-=======
-window.onload = function() {
-var button = document.getElementById("search");
 
-button.addEventListener("click", def);
+//function aims to display all definitions and XML
+function alldisplay(){
+var response = new XMLHttpRequest();
+response.onreadystatechange = function(){
+if (response.readyState== 4 && response.status == 200){
+  allresult(response.responseXML);
+}
+};
+response.open("GET", "request.php?q=&all=true", true);
+response.send();
 }
 
-function def(){
-	var key="definition";
-	var xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function (){
-       if (xhttp.readyState === 4 && this.status == 200){
-    		alert(xhttp.responseText);
-        }
-    };
-
-	xhttp.open("GET","request.php?q=" + key ,true);
-	xhttp.send();
+//function to format XML information and definitions
+function allresult(terms){
+    var definitions = terms.documentElement.children;
+    var results = "<ol>";
+    
+    for(var i = 0; i < definitions.length; i++){
+        results+=`<li><h3>${definitions[i].attributes[0].value.toUpperCase()}</h3><p>${definitions[i].innerHTML.trim()}</p><p> - ${definitions[i].attributes[1].value}</p></li>`;
+    }
+    
+    results+= "</ol>"
+    
+    update(results);
 }
->>>>>>> fc6ed47c73df5f89f3b420635ab26a1da482c8d7
+
+function update(response){
+
+    document.getElementById("update").innerHTML = response;
+    
+}
+
