@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*window.onload = function (){
 var button = document.getElementById("search");
 
@@ -34,3 +35,24 @@ document.getElementById("result").innerHTML = response.responseText;
 response.open("GET", "request.php?q=" + key, true);
 response.send();
 }
+=======
+window.onload = function() {
+var button = document.getElementById("search");
+
+button.addEventListener("click", def);
+}
+
+function def(){
+	var key="definition";
+	var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function (){
+       if (xhttp.readyState === 4 && this.status == 200){
+    		alert(xhttp.responseText);
+        }
+    };
+
+	xhttp.open("GET","request.php?q=" + key ,true);
+	xhttp.send();
+}
+>>>>>>> fc6ed47c73df5f89f3b420635ab26a1da482c8d7
