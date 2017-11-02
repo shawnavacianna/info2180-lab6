@@ -1,0 +1,33 @@
+#pagetitle{
+    background-color:purple;
+    padding: 20px 5px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 40px;
+    font-style: italic;
+	color: #DCDCED;
+}
+h1{
+	margin-bottom: 5px;
+	width:70px
+}
+#content{
+	background-color: #F5F5F5; 
+	padding:5px 20px;
+	border:1px solid black;
+}
+
+#mySearch{
+	border-radius: 7px;
+    height: 20px;
+    font-style: italic;
+    font-family: serif;
+    
+#main{
+	margin:0 auto;
+	width:960px;
+}
+
+body{
+	font-family:Georgia;
+}
